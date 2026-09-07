@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Voice | School Feedback Portal</title>
+<style>
+:root{
+  --navy:#123c69;
+  --blue:#2563eb;
+  --teal:#0f766e;
+  --ink:#172033;
+  --muted:#64748b;
+  --line:#e5e7eb;
+  --soft:#f6f9fc;
+  --white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--soft);line-height:1.6}
+button,input,select,textarea{font:inherit}
+.header{
+  position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line)
+}
+.nav{max-width:1180px;margin:auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:11px;color:var(--navy);font-size:23px;font-weight:800}
+.brand-mark{width:38px;height:38px;border-radius:11px;background:var(--navy);display:grid;place-items:center;color:white;font-weight:800}
+.brand span{color:var(--blue)}
+.nav-right{font-size:14px;color:var(--muted)}
+.hero{
+  min-height:calc(100vh - 75px);display:grid;grid-template-columns:1.05fr .95fr;
+  align-items:center;gap:50px;max-width:1180px;margin:auto;padding:65px 24px;
+}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;padding:8px 13px;border:1px solid #dbeafe;background:#eff6ff;color:#1d4ed8;border-radius:999px;font-size:13px;font-weight:700;margin-bottom:20px}
+.dot{width:7px;height:7px;border-radius:50%;background:#2563eb}
+h1{font-size:clamp(44px,6vw,72px);line-height:1.03;color:var(--navy);letter-spacing:-2px;margin-bottom:22px}
+h1 span{color:var(--blue)}
+.hero-copy{font-size:18px;color:var(--muted);max-width:620px}
+.hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:30px}
+.primary,.secondary{
+  border:0;border-radius:12px;padding:15px 22px;cursor:pointer;font-weight:750;transition:.2s
+}
+.primary{background:var(--blue);color:white;box-shadow:0 10px 25px rgba(37,99,235,.22)}
+.secondary{background:white;color:var(--navy);border:1px solid var(--line)}
+.primary:hover,.secondary:hover{transform:translateY(-2px)}
+.hero-visual{position:relative;display:flex;justify-content:center}
+.hero-image{
+  width:100%;max-width:520px;aspect-ratio:1/1;border-radius:30px;overflow:hidden;
+  background:#eaf2f8 url("school-illustration.svg") center/cover no-repeat;
+  box-shadow:0 25px 70px rgba(15,23,42,.13);border:8px solid white;
+}
+.floating{
+  position:absolute;background:white;border:1px solid var(--line);border-radius:15px;padding:14px 17px;
+  box-shadow:0 15px 35px rgba(15,23,42,.12);font-size:14px;font-weight:700
+}
+.floating.one{left:-12px;top:18%}.floating.two{right:-10px;bottom:18%}
+.section{background:white;padding:80px 24px}
+.section-inner{max-width:1080px;margin:auto}
+.section-title{text-align:center;max-width:650px;margin:0 auto 40px}
+.section-title h2{font-size:35px;color:var(--navy);line-height:1.15}
+.section-title p{color:var(--muted);margin-top:10px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{padding:28px;border:1px solid var(--line);border-radius:20px;background:white;transition:.2s}
+.card:hover{transform:translateY(-5px);box-shadow:0 18px 35px rgba(15,23,42,.08)}
+.icon{width:54px;height:54px;border-radius:15px;background:#eff6ff;display:grid;place-items:center;margin-bottom:18px}
+.icon img{width:30px;height:30px}
+.card h3{color:var(--navy);font-size:19px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:15px}
+.feedback{display:none;min-height:calc(100vh - 75px);padding:55px 24px;background:linear-gradient(135deg,#f8fbff,#eef5ff)}
+.form-wrap{max-width:850px;margin:auto}
+.back{border:0;background:white;color:var(--blue);padding:10px 14px;border-radius:10px;cursor:pointer;margin-bottom:18px;font-weight:700}
+.form-card{background:white;border:1px solid var(--line);border-radius:24px;padding:35px;box-shadow:0 18px 50px rgba(15,23,42,.08)}
+.form-card h2{font-size:32px;color:var(--navy)}
+.form-card>p{color:var(--muted);margin:5px 0 27px}
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:25px}
+.type{border:2px solid var(--line);border-radius:13px;padding:16px;text-align:center;cursor:pointer;font-weight:750;color:var(--muted)}
+.type.active{border-color:var(--blue);background:#eff6ff;color:#1d4ed8}
+.type input{display:none}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.group{display:flex;flex-direction:column}
+.full{grid-column:1/-1}
+label{font-size:14px;font-weight:700;color:#334155;margin-bottom:7px}
+input,select,textarea{border:1px solid #cbd5e1;border-radius:10px;padding:13px;outline:0;background:white;color:var(--ink)}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+textarea{min-height:150px;resize:vertical}
+.check{display:flex;align-items:center;gap:9px;margin:20px 0;color:var(--muted);font-size:14px}
+.check input{width:auto}
+.submit{width:100%;border:0;background:var(--blue);color:white;border-radius:11px;padding:15px;font-weight:800;cursor:pointer}
+.note{margin-top:16px;background:#f8fafc;border-radius:10px;padding:12px 14px;color:var(--muted);font-size:13px}
+.success{display:none;margin-top:15px;background:#ecfdf5;color:#047857;padding:13px;border-radius:10px;text-align:center;font-weight:700}
+.footer{background:#0f172a;color:#94a3b8;text-align:center;padding:25px;font-size:13px}
+@media(max-width:800px){
+  .hero{grid-template-columns:1fr;text-align:center;padding-top:45px}
+  .hero-copy{margin:auto}.hero-actions{justify-content:center}.hero-visual{order:-1}
+  .hero-image{max-width:430px}.floating{display:none}.cards{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .nav-right{display:none}.grid{grid-template-columns:1fr}.full{grid-column:auto}
+  .form-card{padding:23px}.type-grid{grid-template-columns:1fr}h1{letter-spacing:-1px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <nav class="nav">
+    <div class="brand"><div class="brand-mark">SV</div>Student<span>Voice</span></div>
+    <div class="nav-right">School Feedback Portal</div>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> A better school starts with your voice</div>
+      <h1>Your Voice <span>Matters.</span></h1>
+      <p class="hero-copy">
+        A simple and secure place for students to share suggestions, report concerns,
+        and help the school create a better environment for everyone.
+      </p>
+      <div class="hero-actions">
+        <button class="primary" onclick="openFeedback()">Give a Complaint / Suggestion →</button>
+        <button class="secondary" onclick="document.getElementById('why').scrollIntoView()">Learn More</button>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-image" aria-label="School feedback illustration"></div>
+      <div class="floating one">Ideas can create change</div>
+      <div class="floating two">Your feedback matters</div>
+    </div>
+  </section>
+
+  <section class="section" id="why">
+    <div class="section-inner">
+      <div class="section-title">
+        <h2>Speak up. Help improve.</h2>
+        <p>Your feedback can help the school understand what is working and what can be improved.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon"><img src="suggestion-icon.svg" alt=""></div>
+          <h3>Share Your Ideas</h3>
+          <p>Suggest new activities, improvements, facilities or ideas that could make school life better.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><img src="complaint-icon.svg" alt=""></div>
+          <h3>Report a Concern</h3>
+          <p>Let the appropriate school team know about a problem or concern that needs attention.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><img src="privacy-icon.svg" alt=""></div>
+          <h3>Privacy Matters</h3>
+          <p>Choose anonymous submission when you would prefer not to provide your name.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="feedback" id="feedback">
+  <div class="form-wrap">
+    <button class="back" onclick="goHome()">← Back to Home</button>
+    <div class="form-card">
+      <h2>Share Your Feedback</h2>
+      <p>Tell us what you think. Please provide enough detail for the school to understand your feedback.</p>
+
+      <form id="feedbackForm">
+        <div class="type-grid">
+          <label class="type active" id="suggestionType">
+            <input type="radio" name="feedbackType" value="Suggestion" checked> Suggestion
+          </label>
+          <label class="type" id="complaintType">
+            <input type="radio" name="feedbackType" value="Complaint"> Complaint
+          </label>
+        </div>
+
+        <div class="grid">
+          <div class="group">
+            <label for="name">Student Name</label>
+            <input id="name" name="studentName" placeholder="Enter your name">
+          </div>
+          <div class="group">
+            <label for="class">Class & Section</label>
+            <input id="class" name="studentClass" placeholder="Example: 10-A">
+          </div>
+          <div class="group">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option value="">Select category</option>
+              <option>Academics</option><option>Teachers</option><option>Infrastructure</option>
+              <option>Cleanliness</option><option>Canteen</option><option>Sports</option>
+              <option>Transport</option><option>School Events</option><option>Safety</option><option>Other</option>
+            </select>
+          </div>
+          <div class="group">
+            <label for="priority">Priority</label>
+            <select id="priority" name="priority">
+              <option>Normal</option><option>Important</option><option>Urgent</option>
+            </select>
+          </div>
+          <div class="group full">
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" required placeholder="Give your feedback a short title">
+          </div>
+          <div class="group full">
+            <label for="message">Complaint / Suggestion Details</label>
+            <textarea id="message" name="message" required placeholder="Write your feedback here..."></textarea>
+          </div>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" id="anonymous" name="anonymous">
+          Submit anonymously
+        </label>
+
+        <button class="submit" type="submit">Submit Feedback</button>
+        <div class="success" id="success">Feedback form submitted successfully.</div>
+
+        <div class="note">
+          Frontend only: this form is ready for your friend's backend. Replace the submit section
+          in the JavaScript with your API endpoint when the backend is ready.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">Student Voice Portal © 2026</footer>
+
+<script>
+const home = document.getElementById("home");
+const feedback = document.getElementById("feedback");
+
+function openFeedback(){
+  home.style.display = "none";
+  feedback.style.display = "block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function goHome(){
+  feedback.style.display = "none";
+  home.style.display = "block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+const suggestionType = document.getElementById("suggestionType");
+const complaintType = document.getElementById("complaintType");
+
+suggestionType.onclick = () => {
+  suggestionType.classList.add("active");
+  complaintType.classList.remove("active");
+};
+complaintType.onclick = () => {
+  complaintType.classList.add("active");
+  suggestionType.classList.remove("active");
+};
+
+document.getElementById("feedbackForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  /*
+    BACKEND CONNECTION GOES HERE.
+
+    Example:
+    const formData = new FormData(this);
+    fetch("YOUR_BACKEND_API_URL", {
+      method: "POST",
+      body: formData
+    });
+
+    Your friend can replace this section when the backend is ready.
+  */
+
+  document.getElementById("success").style.display = "block";
+  this.reset();
+  suggestionType.classList.add("active");
+  complaintType.classList.remove("active");
+
+  setTimeout(() => {
+    document.getElementById("success").style.display = "none";
+  }, 3500);
+});
+</script>
+</body>
+</html>
