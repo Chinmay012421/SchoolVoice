@@ -35,7 +35,7 @@
             align-items: center;
             justify-content: space-between;
 
-            background: white;
+            background: rgba(255, 255, 255, 0.96);
 
             border-bottom: 1px solid #e5e7eb;
 
@@ -71,34 +71,38 @@
 
             padding: 60px 7%;
 
-            background:
-                radial-gradient(
-                    circle at 10% 20%,
-                    rgba(37, 99, 235, 0.10),
-                    transparent 35%
+            position: relative;
+
+            background-image:
+                linear-gradient(
+                    rgba(255, 255, 255, 0.70),
+                    rgba(255, 255, 255, 0.70)
                 ),
-                radial-gradient(
-                    circle at 90% 80%,
-                    rgba(37, 99, 235, 0.08),
-                    transparent 35%
-                ),
-                #f8fafc;
+                url("background_image_frontend.png");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
 
         .home-content {
-            max-width: 900px;
+            width: 100%;
+            max-width: 950px;
+
             text-align: center;
 
             animation: fadeUp 0.8s ease;
         }
 
 
-        .school-badge {
-            width: 85px;
-            height: 85px;
+        /* ================= SCHOOL BADGE ================= */
 
-            margin: 0 auto 25px;
+        .school-badge {
+            width: 82px;
+            height: 82px;
+
+            margin: 0 auto 22px;
 
             display: flex;
             align-items: center;
@@ -106,22 +110,31 @@
 
             border-radius: 50%;
 
-            background: #eff6ff;
+            background: rgba(239, 246, 255, 0.95);
 
             color: #2563eb;
 
-            font-size: 38px;
+            font-size: 32px;
+            font-weight: 700;
 
-            border: 1px solid #dbeafe;
+            border: 1px solid #bfdbfe;
+
+            box-shadow:
+                0 8px 25px rgba(37, 99, 235, 0.12);
         }
 
 
+        /* ================= HOME TITLE ================= */
+
         .home h1 {
-            font-size: clamp(35px, 6vw, 58px);
+            font-size: clamp(38px, 6vw, 62px);
 
             color: #123c69;
 
-            margin-bottom: 18px;
+            margin-bottom: 20px;
+
+            text-shadow:
+                0 2px 10px rgba(255, 255, 255, 0.8);
         }
 
 
@@ -131,21 +144,25 @@
 
 
         .home-description {
-            max-width: 720px;
+            max-width: 760px;
 
             margin: auto;
 
-            color: #64748b;
+            color: #475569;
 
             font-size: 17px;
 
             line-height: 1.8;
+
+            text-shadow:
+                0 1px 5px rgba(255, 255, 255, 0.9);
         }
 
 
         /* ================= INFORMATION CARDS ================= */
 
         .information {
+
             display: grid;
 
             grid-template-columns:
@@ -153,44 +170,52 @@
 
             gap: 18px;
 
-            margin: 40px auto;
+            margin: 38px auto;
 
-            max-width: 850px;
+            max-width: 900px;
         }
 
 
         .info-card {
-            background: white;
+
+            background: rgba(255, 255, 255, 0.90);
+
+            backdrop-filter: blur(8px);
 
             padding: 25px 20px;
 
-            border-radius: 15px;
+            border-radius: 16px;
 
-            border: 1px solid #e5e7eb;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+
+            box-shadow:
+                0 8px 25px rgba(15, 23, 42, 0.08);
 
             transition: 0.3s;
         }
 
 
         .info-card:hover {
-            transform: translateY(-5px);
+
+            transform: translateY(-6px);
 
             box-shadow:
-                0 10px 25px
-                rgba(15, 23, 42, 0.08);
+                0 14px 30px rgba(15, 23, 42, 0.12);
         }
 
 
         .info-card h3 {
+
             color: #123c69;
 
-            margin-bottom: 8px;
+            margin-bottom: 9px;
 
             font-size: 17px;
         }
 
 
         .info-card p {
+
             color: #64748b;
 
             font-size: 14px;
@@ -202,6 +227,7 @@
         /* ================= MAIN BUTTON ================= */
 
         .feedback-btn {
+
             display: inline-flex;
 
             align-items: center;
@@ -210,7 +236,7 @@
 
             gap: 10px;
 
-            padding: 16px 30px;
+            padding: 17px 32px;
 
             border-radius: 12px;
 
@@ -234,44 +260,55 @@
             transition: 0.3s;
 
             box-shadow:
-                0 8px 20px
-                rgba(37, 99, 235, 0.20);
+                0 10px 25px
+                rgba(37, 99, 235, 0.28);
         }
 
 
         .feedback-btn:hover {
-            transform: translateY(-3px);
+
+            transform: translateY(-3px) scale(1.02);
 
             box-shadow:
-                0 12px 25px
-                rgba(37, 99, 235, 0.30);
+                0 14px 30px
+                rgba(37, 99, 235, 0.35);
         }
 
 
         /* ================= FEEDBACK PAGE ================= */
 
         #feedbackPage {
+
             display: none;
 
-            min-height: 100vh;
+            min-height: calc(100vh - 72px);
 
             padding: 50px 7%;
 
-            background: #f5f7fb;
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fafc,
+                    #eef4ff
+                );
         }
 
 
         .feedback-container {
+
             max-width: 900px;
 
             margin: auto;
         }
 
 
+        /* ================= BACK BUTTON ================= */
+
         .back-btn {
+
             border: none;
 
-            background: transparent;
+            background: white;
 
             color: #2563eb;
 
@@ -281,11 +318,29 @@
 
             cursor: pointer;
 
-            margin-bottom: 25px;
+            padding: 10px 15px;
+
+            border-radius: 9px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 3px 10px rgba(15, 23, 42, 0.06);
+
+            transition: 0.2s;
         }
 
 
+        .back-btn:hover {
+
+            transform: translateX(-3px);
+        }
+
+
+        /* ================= FEEDBACK CARD ================= */
+
         .feedback-card {
+
             background: white;
 
             border-radius: 20px;
@@ -293,12 +348,15 @@
             padding: 35px;
 
             box-shadow:
-                0 10px 35px
-                rgba(15, 23, 42, 0.08);
+                0 12px 40px
+                rgba(15, 23, 42, 0.09);
+
+            animation: fadeUp 0.5s ease;
         }
 
 
         .feedback-card h2 {
+
             color: #123c69;
 
             font-size: 30px;
@@ -308,6 +366,7 @@
 
 
         .feedback-card > p {
+
             color: #64748b;
 
             margin-bottom: 30px;
@@ -317,6 +376,7 @@
         /* ================= TYPE ================= */
 
         .type-selection {
+
             display: grid;
 
             grid-template-columns: 1fr 1fr;
@@ -328,6 +388,7 @@
 
 
         .type-option {
+
             padding: 18px;
 
             text-align: center;
@@ -340,16 +401,22 @@
 
             font-weight: 700;
 
+            color: #475569;
+
             transition: 0.25s;
         }
 
 
         .type-option:hover {
+
             border-color: #93c5fd;
+
+            transform: translateY(-2px);
         }
 
 
         .type-option.active {
+
             background: #eff6ff;
 
             border-color: #2563eb;
@@ -359,6 +426,7 @@
 
 
         .type-option input {
+
             display: none;
         }
 
@@ -366,6 +434,7 @@
         /* ================= FORM ================= */
 
         .form-grid {
+
             display: grid;
 
             grid-template-columns: 1fr 1fr;
@@ -375,6 +444,7 @@
 
 
         .form-group {
+
             display: flex;
 
             flex-direction: column;
@@ -382,11 +452,13 @@
 
 
         .full {
+
             grid-column: 1 / -1;
         }
 
 
         label {
+
             font-weight: 600;
 
             color: #334155;
@@ -450,10 +522,13 @@
             margin: 22px 0;
 
             color: #475569;
+
+            font-weight: 500;
         }
 
 
         .anonymous input {
+
             width: auto;
         }
 
@@ -499,7 +574,7 @@
         }
 
 
-        /* ================= NOTE ================= */
+        /* ================= PRIVACY ================= */
 
         .privacy-note {
 
@@ -562,15 +637,20 @@
         @keyframes fadeUp {
 
             from {
+
                 opacity: 0;
-                transform: translateY(25px);
+
+                transform:
+                    translateY(25px);
             }
 
             to {
-                opacity: 1;
-                transform: translateY(0);
-            }
 
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
         }
 
 
@@ -579,35 +659,56 @@
         @media (max-width: 700px) {
 
             header {
+
                 padding: 0 5%;
             }
 
+
             .nav-info {
+
                 display: none;
             }
 
+
             .home {
+
                 padding: 50px 5%;
             }
 
+
             .information {
+
                 grid-template-columns: 1fr;
             }
+
 
             .type-selection {
+
                 grid-template-columns: 1fr;
             }
+
 
             .form-grid {
+
                 grid-template-columns: 1fr;
             }
 
+
             .full {
+
                 grid-column: auto;
             }
 
+
             .feedback-card {
+
                 padding: 23px;
+            }
+
+
+            .home-description {
+
+                font-size: 15px;
             }
 
         }
@@ -672,7 +773,7 @@
         </p>
 
 
-        <!-- INFORMATION -->
+        <!-- INFORMATION CARDS -->
 
         <div class="information">
 
@@ -722,7 +823,7 @@
         </div>
 
 
-        <!-- MAIN BUTTON -->
+        <!-- FEEDBACK BUTTON -->
 
         <button
             class="feedback-btn"
@@ -772,7 +873,7 @@
             </p>
 
 
-            <!-- TYPE -->
+            <!-- TYPE SELECTION -->
 
             <div class="type-selection">
 
@@ -821,85 +922,96 @@
                 <div class="form-grid">
 
 
+                    <!-- NAME -->
+
                     <div class="form-group">
 
-                        <label>
+                        <label for="studentName">
                             Student Name
                         </label>
 
                         <input
                             type="text"
                             id="studentName"
+                            name="studentName"
                             placeholder="Enter your name"
                         >
 
                     </div>
 
 
+                    <!-- CLASS -->
+
                     <div class="form-group">
 
-                        <label>
+                        <label for="studentClass">
                             Class & Section
                         </label>
 
                         <input
                             type="text"
                             id="studentClass"
+                            name="studentClass"
                             placeholder="Example: 10-A"
                         >
 
                     </div>
 
 
+                    <!-- CATEGORY -->
+
                     <div class="form-group">
 
-                        <label>
+                        <label for="category">
                             Category
                         </label>
 
-                        <select id="category">
+                        <select
+                            id="category"
+                            name="category"
+                        >
 
                             <option value="">
                                 Select category
                             </option>
 
-                            <option>
+                            <option value="Academics">
                                 Academics
                             </option>
 
-                            <option>
+                            <option value="Teachers">
                                 Teachers
                             </option>
 
-                            <option>
+                            <option value="Infrastructure">
                                 Infrastructure
                             </option>
 
-                            <option>
+                            <option value="Cleanliness">
                                 Cleanliness
                             </option>
 
-                            <option>
-                                Canteen
+                            <option value="Canteen">
+                                School Canteen
                             </option>
 
-                            <option>
+                            <option value="Sports">
                                 Sports
                             </option>
 
-                            <option>
+                            <option value="Transport">
                                 Transport
                             </option>
 
-                            <option>
+                            <option value="School Events">
                                 School Events
                             </option>
 
-                            <option>
+                            <option value="Safety">
                                 Safety
                             </option>
 
-                            <option>
+                            <option value="Other">
                                 Other
                             </option>
 
@@ -908,23 +1020,28 @@
                     </div>
 
 
+                    <!-- PRIORITY -->
+
                     <div class="form-group">
 
-                        <label>
+                        <label for="priority">
                             Priority
                         </label>
 
-                        <select id="priority">
+                        <select
+                            id="priority"
+                            name="priority"
+                        >
 
-                            <option>
+                            <option value="Normal">
                                 Normal
                             </option>
 
-                            <option>
+                            <option value="Important">
                                 Important
                             </option>
 
-                            <option>
+                            <option value="Urgent">
                                 Urgent
                             </option>
 
@@ -933,15 +1050,18 @@
                     </div>
 
 
+                    <!-- SUBJECT -->
+
                     <div class="form-group full">
 
-                        <label>
+                        <label for="subject">
                             Subject
                         </label>
 
                         <input
                             type="text"
                             id="subject"
+                            name="subject"
                             placeholder="Enter a short title"
                             required
                         >
@@ -949,14 +1069,17 @@
                     </div>
 
 
+                    <!-- MESSAGE -->
+
                     <div class="form-group full">
 
-                        <label>
+                        <label for="message">
                             Complaint / Suggestion Details
                         </label>
 
                         <textarea
                             id="message"
+                            name="message"
                             placeholder="Explain your suggestion or complaint..."
                             required
                         ></textarea>
@@ -974,6 +1097,7 @@
                     <input
                         type="checkbox"
                         id="anonymous"
+                        name="anonymous"
                     >
 
                     Submit anonymously
@@ -1005,12 +1129,16 @@
                 </div>
 
 
+                <!-- PRIVACY -->
+
                 <div class="privacy-note">
 
                     Your feedback will be handled according to
-                    the school's feedback policy. If you choose
-                    anonymous submission, your identity can be
-                    hidden from the feedback display.
+                    the school's feedback policy.
+
+                    If you choose anonymous submission,
+                    your identity can be hidden from the
+                    feedback display.
 
                 </div>
 
@@ -1037,10 +1165,6 @@
 </footer>
 
 
-
-<!-- ================================================= -->
-<!-- JAVASCRIPT -->
-<!-- ================================================= -->
 
 <script>
 
@@ -1110,7 +1234,7 @@
     );
 
 
-    /* ================= FORM ================= */
+    /* ================= FORM SUBMIT ================= */
 
     const form =
         document.getElementById("feedbackForm");
@@ -1128,48 +1252,16 @@
 
                 Your friend's backend can be connected here.
 
-                The information available is:
+                Available form data:
 
-                - feedback type
-                - student name
-                - class
-                - category
-                - priority
-                - subject
-                - message
-                - anonymous status
-
-                Example:
-
-                const data = {
-                    type: document.querySelector(
-                        'input[name="feedbackType"]:checked'
-                    ).value,
-
-                    studentName:
-                        document.getElementById("studentName").value,
-
-                    studentClass:
-                        document.getElementById("studentClass").value,
-
-                    category:
-                        document.getElementById("category").value,
-
-                    priority:
-                        document.getElementById("priority").value,
-
-                    subject:
-                        document.getElementById("subject").value,
-
-                    message:
-                        document.getElementById("message").value,
-
-                    anonymous:
-                        document.getElementById("anonymous").checked
-                };
-
-                Your friend can send this object
-                to the backend API.
+                feedback type
+                student name
+                class
+                category
+                priority
+                subject
+                message
+                anonymous status
             */
 
 
@@ -1198,4 +1290,3 @@
 </body>
 
 </html>
-```
