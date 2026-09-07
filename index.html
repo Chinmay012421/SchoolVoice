@@ -1,13 +1,15 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Student Voice | Suggestion & Complaint</title>
+    <title>Student Voice | School Feedback Portal</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -15,247 +17,586 @@
             font-family: "Segoe UI", Arial, sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background: #f5f7fb;
             color: #172033;
-            min-height: 100vh;
         }
 
         /* ================= HEADER ================= */
 
         header {
-            background: linear-gradient(135deg, #123c69, #2563eb);
-            color: white;
-            padding: 18px 7%;
+            height: 72px;
+            padding: 0 7%;
+
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            justify-content: space-between;
+
+            background: white;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
             font-size: 24px;
             font-weight: 700;
+            color: #123c69;
         }
 
         .logo span {
-            color: #bfdbfe;
+            color: #2563eb;
         }
 
-        .header-right {
+        .nav-info {
             font-size: 14px;
-            opacity: 0.9;
-        }
-
-        /* ================= HERO ================= */
-
-        .hero {
-            text-align: center;
-            padding: 65px 20px;
-            background: linear-gradient(135deg, #eaf2ff, #ffffff);
-        }
-
-        .hero h1 {
-            font-size: 44px;
-            color: #123c69;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            max-width: 700px;
-            margin: auto;
             color: #64748b;
-            font-size: 17px;
-            line-height: 1.7;
         }
 
-        /* ================= MAIN ================= */
 
-        .container {
-            width: 90%;
-            max-width: 1050px;
-            margin: 40px auto;
+        /* ================= HOME ================= */
+
+        .home {
+            min-height: calc(100vh - 72px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 60px 7%;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(37, 99, 235, 0.10),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(37, 99, 235, 0.08),
+                    transparent 35%
+                ),
+                #f8fafc;
         }
 
-        .card {
-            background: white;
-            border-radius: 18px;
-            padding: 32px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+
+        .home-content {
+            max-width: 900px;
+            text-align: center;
+
+            animation: fadeUp 0.8s ease;
         }
 
-        .card h2 {
+
+        .school-badge {
+            width: 85px;
+            height: 85px;
+
+            margin: 0 auto 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            font-size: 38px;
+
+            border: 1px solid #dbeafe;
+        }
+
+
+        .home h1 {
+            font-size: clamp(35px, 6vw, 58px);
+
             color: #123c69;
+
+            margin-bottom: 18px;
+        }
+
+
+        .home h1 span {
+            color: #2563eb;
+        }
+
+
+        .home-description {
+            max-width: 720px;
+
+            margin: auto;
+
+            color: #64748b;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+        }
+
+
+        /* ================= INFORMATION CARDS ================= */
+
+        .information {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin: 40px auto;
+
+            max-width: 850px;
+        }
+
+
+        .info-card {
+            background: white;
+
+            padding: 25px 20px;
+
+            border-radius: 15px;
+
+            border: 1px solid #e5e7eb;
+
+            transition: 0.3s;
+        }
+
+
+        .info-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(15, 23, 42, 0.08);
+        }
+
+
+        .info-card h3 {
+            color: #123c69;
+
+            margin-bottom: 8px;
+
+            font-size: 17px;
+        }
+
+
+        .info-card p {
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ================= MAIN BUTTON ================= */
+
+        .feedback-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            padding: 16px 30px;
+
+            border-radius: 12px;
+
+            border: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 8px 20px
+                rgba(37, 99, 235, 0.20);
+        }
+
+
+        .feedback-btn:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(37, 99, 235, 0.30);
+        }
+
+
+        /* ================= FEEDBACK PAGE ================= */
+
+        #feedbackPage {
+            display: none;
+
+            min-height: 100vh;
+
+            padding: 50px 7%;
+
+            background: #f5f7fb;
+        }
+
+
+        .feedback-container {
+            max-width: 900px;
+
+            margin: auto;
+        }
+
+
+        .back-btn {
+            border: none;
+
+            background: transparent;
+
+            color: #2563eb;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
             margin-bottom: 25px;
         }
+
+
+        .feedback-card {
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 10px 35px
+                rgba(15, 23, 42, 0.08);
+        }
+
+
+        .feedback-card h2 {
+            color: #123c69;
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .feedback-card > p {
+            color: #64748b;
+
+            margin-bottom: 30px;
+        }
+
 
         /* ================= TYPE ================= */
 
         .type-selection {
-            display: flex;
-            gap: 18px;
-            margin-bottom: 28px;
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+
+            margin-bottom: 30px;
         }
 
+
         .type-option {
-            flex: 1;
             padding: 18px;
-            border: 2px solid #dbe3ef;
-            border-radius: 13px;
+
             text-align: center;
+
+            border: 2px solid #e2e8f0;
+
+            border-radius: 12px;
+
             cursor: pointer;
-            font-weight: 600;
+
+            font-weight: 700;
+
             transition: 0.25s;
         }
 
+
         .type-option:hover {
-            transform: translateY(-2px);
             border-color: #93c5fd;
         }
 
+
         .type-option.active {
             background: #eff6ff;
+
             border-color: #2563eb;
+
             color: #1d4ed8;
         }
+
 
         .type-option input {
             display: none;
         }
 
+
         /* ================= FORM ================= */
 
         .form-grid {
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 20px;
         }
 
+
         .form-group {
             display: flex;
+
             flex-direction: column;
         }
+
 
         .full {
             grid-column: 1 / -1;
         }
 
+
         label {
-            margin-bottom: 8px;
             font-weight: 600;
+
             color: #334155;
+
+            margin-bottom: 8px;
         }
+
 
         input,
         select,
         textarea {
+
             width: 100%;
+
             padding: 14px;
+
             border: 1px solid #cbd5e1;
+
             border-radius: 10px;
+
             outline: none;
+
             font-size: 15px;
+
             background: white;
+
             transition: 0.2s;
         }
+
 
         input:focus,
         select:focus,
         textarea:focus {
+
             border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37, 99, 235, 0.10);
         }
 
+
         textarea {
-            min-height: 150px;
+
+            min-height: 160px;
+
             resize: vertical;
         }
+
 
         /* ================= ANONYMOUS ================= */
 
         .anonymous {
+
             display: flex;
+
             align-items: center;
+
             gap: 10px;
+
             margin: 22px 0;
+
             color: #475569;
-            font-weight: 500;
         }
+
 
         .anonymous input {
             width: auto;
         }
 
-        /* ================= BUTTON ================= */
+
+        /* ================= SUBMIT ================= */
 
         .submit-btn {
+
             width: 100%;
+
             padding: 16px;
+
             border: none;
+
             border-radius: 11px;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
+
             color: white;
+
             font-size: 17px;
+
             font-weight: 700;
+
             cursor: pointer;
+
             transition: 0.25s;
         }
 
+
         .submit-btn:hover {
+
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+
+            box-shadow:
+                0 8px 20px
+                rgba(37, 99, 235, 0.25);
         }
 
-        /* ================= INFO ================= */
 
-        .info-box {
+        /* ================= NOTE ================= */
+
+        .privacy-note {
+
             margin-top: 20px;
-            padding: 15px;
+
+            padding: 14px;
+
+            border-radius: 9px;
+
             background: #f8fafc;
-            border-left: 4px solid #2563eb;
-            border-radius: 8px;
+
             color: #64748b;
-            font-size: 14px;
+
+            font-size: 13px;
+
             line-height: 1.6;
         }
 
-        /* ================= SUCCESS MESSAGE ================= */
 
-        .success-message {
+        /* ================= SUCCESS ================= */
+
+        .success {
+
             display: none;
+
             margin-top: 20px;
+
             padding: 15px;
+
             border-radius: 10px;
+
             background: #dcfce7;
+
             color: #166534;
+
             text-align: center;
+
             font-weight: 600;
         }
+
 
         /* ================= FOOTER ================= */
 
         footer {
-            background: #0f172a;
-            color: #94a3b8;
+
             text-align: center;
+
             padding: 25px;
-            margin-top: 60px;
+
+            background: #0f172a;
+
+            color: #94a3b8;
+
             font-size: 14px;
         }
 
-        /* ================= RESPONSIVE ================= */
+
+        /* ================= ANIMATION ================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* ================= MOBILE ================= */
 
         @media (max-width: 700px) {
 
             header {
-                flex-direction: column;
-                gap: 8px;
-                text-align: center;
+                padding: 0 5%;
             }
 
-            .hero h1 {
-                font-size: 32px;
+            .nav-info {
+                display: none;
+            }
+
+            .home {
+                padding: 50px 5%;
+            }
+
+            .information {
+                grid-template-columns: 1fr;
+            }
+
+            .type-selection {
+                grid-template-columns: 1fr;
             }
 
             .form-grid {
@@ -266,63 +607,181 @@
                 grid-column: auto;
             }
 
-            .type-selection {
-                flex-direction: column;
+            .feedback-card {
+                padding: 23px;
             }
 
-            .card {
-                padding: 22px;
-            }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- ================= HEADER ================= -->
 
-    <header>
+<!-- ================================================= -->
+<!-- HEADER -->
+<!-- ================================================= -->
 
-        <div class="logo">
-            Student<span>Voice</span>
+<header>
+
+    <div class="logo">
+        Student<span>Voice</span>
+    </div>
+
+    <div class="nav-info">
+        School Feedback Portal
+    </div>
+
+</header>
+
+
+<!-- ================================================= -->
+<!-- HOME PAGE -->
+<!-- ================================================= -->
+
+<section class="home" id="homePage">
+
+    <div class="home-content">
+
+
+        <div class="school-badge">
+            SV
         </div>
 
-        <div class="header-right">
-            Suggestion & Complaint Portal
-        </div>
 
-    </header>
+        <h1>
+            Your Voice
+            <span>Matters.</span>
+        </h1>
 
 
-    <!-- ================= HERO ================= -->
+        <p class="home-description">
 
-    <section class="hero">
+            Welcome to our school's Student Voice Portal.
+            This platform allows students to share their ideas,
+            suggestions and concerns with the school administration.
 
-        <h1>Your Voice Matters</h1>
+            <br><br>
 
-        <p>
-            Share your suggestions, ideas, concerns or complaints
-            with the school. Your feedback can help create a better
-            environment for every student.
+            Every suggestion can help us improve our school
+            and create a safer, happier and better environment
+            for everyone.
+
         </p>
 
-    </section>
+
+        <!-- INFORMATION -->
+
+        <div class="information">
 
 
-    <!-- ================= MAIN ================= -->
+            <div class="info-card">
 
-    <main class="container">
+                <h3>
+                    Share Your Ideas
+                </h3>
 
-        <section class="card">
+                <p>
+                    Have an idea that could improve the school?
+                    Let us know what you think.
+                </p>
 
-            <h2>Submit Your Feedback</h2>
+            </div>
 
 
-            <!-- SUGGESTION / COMPLAINT -->
+            <div class="info-card">
+
+                <h3>
+                    Report a Concern
+                </h3>
+
+                <p>
+                    Tell the school about problems or concerns
+                    that need attention.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <h3>
+                    Your Privacy
+                </h3>
+
+                <p>
+                    You can choose to submit your feedback
+                    anonymously.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- MAIN BUTTON -->
+
+        <button
+            class="feedback-btn"
+            onclick="openFeedback()"
+        >
+
+            Give a Complaint / Suggestion
+
+        </button>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- FEEDBACK PAGE -->
+<!-- ================================================= -->
+
+<section id="feedbackPage">
+
+    <div class="feedback-container">
+
+
+        <button
+            class="back-btn"
+            onclick="goHome()"
+        >
+
+            ← Back to Home
+
+        </button>
+
+
+        <div class="feedback-card">
+
+
+            <h2>
+                Submit Your Feedback
+            </h2>
+
+
+            <p>
+                Please provide the details below.
+            </p>
+
+
+            <!-- TYPE -->
 
             <div class="type-selection">
 
-                <label class="type-option active" id="suggestionOption">
+
+                <label
+                    class="type-option active"
+                    id="suggestionOption"
+                >
 
                     <input
                         type="radio"
@@ -336,7 +795,10 @@
                 </label>
 
 
-                <label class="type-option" id="complaintOption">
+                <label
+                    class="type-option"
+                    id="complaintOption"
+                >
 
                     <input
                         type="radio"
@@ -348,6 +810,7 @@
 
                 </label>
 
+
             </div>
 
 
@@ -355,96 +818,89 @@
 
             <form id="feedbackForm">
 
+
                 <div class="form-grid">
 
 
-                    <!-- NAME -->
-
                     <div class="form-group">
 
-                        <label for="studentName">
+                        <label>
                             Student Name
                         </label>
 
                         <input
                             type="text"
                             id="studentName"
-                            name="studentName"
                             placeholder="Enter your name"
                         >
 
                     </div>
 
 
-                    <!-- CLASS -->
-
                     <div class="form-group">
 
-                        <label for="studentClass">
+                        <label>
                             Class & Section
                         </label>
 
                         <input
                             type="text"
                             id="studentClass"
-                            name="studentClass"
                             placeholder="Example: 10-A"
                         >
 
                     </div>
 
 
-                    <!-- CATEGORY -->
-
                     <div class="form-group">
 
-                        <label for="category">
+                        <label>
                             Category
                         </label>
 
-                        <select id="category" name="category">
+                        <select id="category">
 
                             <option value="">
                                 Select category
                             </option>
 
-                            <option value="Academics">
+                            <option>
                                 Academics
                             </option>
 
-                            <option value="Teachers">
+                            <option>
                                 Teachers
                             </option>
 
-                            <option value="Infrastructure">
+                            <option>
                                 Infrastructure
                             </option>
 
-                            <option value="Cleanliness">
+                            <option>
                                 Cleanliness
                             </option>
 
-                            <option value="Canteen">
-                                School Canteen
+                            <option>
+                                Canteen
                             </option>
 
-                            <option value="Sports">
+                            <option>
                                 Sports
                             </option>
 
-                            <option value="Transport">
+                            <option>
                                 Transport
                             </option>
 
-                            <option value="Events">
+                            <option>
                                 School Events
                             </option>
 
-                            <option value="Safety">
+                            <option>
                                 Safety
                             </option>
 
-                            <option value="Other">
+                            <option>
                                 Other
                             </option>
 
@@ -453,25 +909,23 @@
                     </div>
 
 
-                    <!-- PRIORITY -->
-
                     <div class="form-group">
 
-                        <label for="priority">
+                        <label>
                             Priority
                         </label>
 
-                        <select id="priority" name="priority">
+                        <select id="priority">
 
-                            <option value="Normal">
+                            <option>
                                 Normal
                             </option>
 
-                            <option value="Important">
+                            <option>
                                 Important
                             </option>
 
-                            <option value="Urgent">
+                            <option>
                                 Urgent
                             </option>
 
@@ -480,18 +934,15 @@
                     </div>
 
 
-                    <!-- SUBJECT -->
-
                     <div class="form-group full">
 
-                        <label for="subject">
+                        <label>
                             Subject
                         </label>
 
                         <input
                             type="text"
                             id="subject"
-                            name="subject"
                             placeholder="Enter a short title"
                             required
                         >
@@ -499,22 +950,20 @@
                     </div>
 
 
-                    <!-- MESSAGE -->
-
                     <div class="form-group full">
 
-                        <label for="message">
-                            Describe your suggestion / complaint
+                        <label>
+                            Complaint / Suggestion Details
                         </label>
 
                         <textarea
                             id="message"
-                            name="message"
-                            placeholder="Write your feedback in detail..."
+                            placeholder="Explain your suggestion or complaint..."
                             required
                         ></textarea>
 
                     </div>
+
 
                 </div>
 
@@ -526,7 +975,6 @@
                     <input
                         type="checkbox"
                         id="anonymous"
-                        name="anonymous"
                     >
 
                     Submit anonymously
@@ -540,108 +988,161 @@
                     type="submit"
                     class="submit-btn"
                 >
+
                     Submit Feedback
+
                 </button>
 
 
                 <!-- SUCCESS -->
 
                 <div
-                    class="success-message"
+                    class="success"
                     id="successMessage"
                 >
+
                     Your feedback has been submitted successfully.
+
                 </div>
 
 
-                <!-- BACKEND NOTE -->
-
-                <div class="info-box">
+                <div class="privacy-note">
 
                     Your feedback will be handled according to
-                    the school's feedback policy.
+                    the school's feedback policy. If you choose
+                    anonymous submission, your identity can be
+                    hidden from the feedback display.
 
                 </div>
+
 
             </form>
 
-        </section>
 
-    </main>
+        </div>
 
+    </div>
 
-    <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-        Student Voice Portal &copy; 2026
-
-    </footer>
+</section>
 
 
-    <!-- ================= JAVASCRIPT ================= -->
 
-    <script>
+<!-- ================================================= -->
+<!-- FOOTER -->
+<!-- ================================================= -->
 
-        /*
-            FRONTEND ONLY
+<footer>
 
-            The form currently does NOT send data anywhere.
+    Student Voice Portal &copy; 2026
 
-            Your friend can connect this submit function
-            to the backend API later.
-        */
+</footer>
 
 
-        const form =
-            document.getElementById("feedbackForm");
+
+<!-- ================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================================= -->
+
+<script>
 
 
-        const suggestionOption =
-            document.getElementById("suggestionOption");
+    /* ================= OPEN FEEDBACK ================= */
+
+    function openFeedback() {
+
+        document.getElementById("homePage").style.display = "none";
+
+        document.getElementById("feedbackPage").style.display = "block";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
 
 
-        const complaintOption =
-            document.getElementById("complaintOption");
+    /* ================= GO HOME ================= */
+
+    function goHome() {
+
+        document.getElementById("feedbackPage").style.display = "none";
+
+        document.getElementById("homePage").style.display = "flex";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
 
 
-        const successMessage =
-            document.getElementById("successMessage");
+    /* ================= TYPE SELECTION ================= */
+
+    const suggestionOption =
+        document.getElementById("suggestionOption");
+
+    const complaintOption =
+        document.getElementById("complaintOption");
 
 
-        /* TYPE SELECTION */
-
-        suggestionOption.addEventListener("click", function () {
+    suggestionOption.addEventListener(
+        "click",
+        function () {
 
             suggestionOption.classList.add("active");
 
             complaintOption.classList.remove("active");
 
-        });
+        }
+    );
 
 
-        complaintOption.addEventListener("click", function () {
+    complaintOption.addEventListener(
+        "click",
+        function () {
 
             complaintOption.classList.add("active");
 
             suggestionOption.classList.remove("active");
 
-        });
+        }
+    );
 
 
-        /* FORM SUBMIT */
+    /* ================= FORM ================= */
 
-        form.addEventListener("submit", function (event) {
+    const form =
+        document.getElementById("feedbackForm");
+
+
+    form.addEventListener(
+        "submit",
+        function (event) {
 
             event.preventDefault();
 
 
             /*
-                BACKEND CONNECTION GOES HERE.
+                FRONTEND ONLY
 
-                Example for your friend:
+                Your friend's backend can be connected here.
 
-                const formData = {
+                The information available is:
+
+                - feedback type
+                - student name
+                - class
+                - category
+                - priority
+                - subject
+                - message
+                - anonymous status
+
+                Example:
+
+                const data = {
                     type: document.querySelector(
                         'input[name="feedbackType"]:checked'
                     ).value,
@@ -668,23 +1169,34 @@
                         document.getElementById("anonymous").checked
                 };
 
-                Then send formData to your backend API.
+                Your friend can send this object
+                to the backend API.
             */
 
 
-            successMessage.style.display = "block";
+            const success =
+                document.getElementById("successMessage");
 
 
-            setTimeout(function () {
+            success.style.display = "block";
 
-                successMessage.style.display = "none";
 
-            }, 3500);
+            setTimeout(
+                function () {
 
-        });
+                    success.style.display = "none";
 
-    </script>
+                },
+                3500
+            );
+
+        }
+    );
+
+</script>
+
 
 </body>
+
 </html>
 ```
