@@ -1,0 +1,76 @@
+SchoolFix/
+│
+├── app.py
+├── database.py
+├── schoolfix.db        ← created automatically
+│
+└── templates/
+    ├── index.html
+    ├── login.html
+    ├── register.html
+    ├── dashboard.html
+    ├── apply_admin.html
+    ├── admin_applications.html
+    ├── reports.html
+    ├── my_reports.html
+    └── unreasonable_reports.html
+
+#System work
+                    SCHOOLFIX
+                       │
+          ┌────────────┴────────────┐
+          │                         │
+       STUDENT                    ADMIN
+          │                         │
+          │                 ┌───────┴───────┐
+          │                 │               │
+          │              Admin          Main Admin
+          │                 │               │
+          │                 │          FULL CONTROL
+          │                 │
+          │                 └── Limited powers
+          │
+          └── Apply for Admin
+                    │
+                    ▼
+             Main Admin Queue
+                    │
+             ┌──────┴──────┐
+             ▼             ▼
+          APPROVE        REJECT
+             │
+             ▼
+           ADMIN
+
+#Admin System
+Student
+   │
+   │ Apply to become Admin
+   ↓
+admin_applications
+   │
+   ↓
+Main Admin 1 / Main Admin 2
+   │
+   ├── Approve ──→ User becomes Admin
+   │
+   └── Reject
+
+#What one can see
+STUDENT
+   ↓
+Can submit complaints
+Can see own complaints
+
+ADMIN
+   ↓
+Can review complaints
+Can change complaint status
+Can mark complaint "Unreasonable"
+
+MAIN ADMIN × 2
+   ↓
+Full control
+Can approve/reject Admin applications
+Can manage admins
+Can review unreasonable complaints
