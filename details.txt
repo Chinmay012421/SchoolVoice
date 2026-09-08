@@ -2,18 +2,36 @@ SchoolFix/
 │
 ├── app.py
 ├── database.py
-├── schoolfix.db        ← created automatically
+├── requirements.txt
+├── .gitignore
+├── README.md
 │
-└── templates/
-    ├── index.html
-    ├── login.html
-    ├── register.html
-    ├── dashboard.html
-    ├── apply_admin.html
-    ├── admin_applications.html
-    ├── reports.html
-    ├── my_reports.html
-    └── unreasonable_reports.html
+├── templates/
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── dashboard.html
+│   ├── apply_admin.html
+│   ├── admin_applications.html
+│   ├── reports.html
+│   ├── my_reports.html
+│   └── unreasonable_reports.html
+│
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   │
+│   ├── js/
+│   │   └── script.js
+│   │
+│   └── images/
+│       ├── complaint-icon.svg
+│       ├── privacy-icon.svg
+│       ├── school-illustration.svg
+│       └── suggestion-icon.svg
+│
+└── instance/
+    └── schoolfix.db
 
 #System work
                     SCHOOLFIX
