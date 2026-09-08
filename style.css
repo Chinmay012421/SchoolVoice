@@ -218,10 +218,10 @@ h1 span {
     box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
 }
 
-.art-svg {
-    width: 120px;
-    height: 120px;
-    color: var(--blue);
+.art-img {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
     margin-bottom: 20px;
 }
 
